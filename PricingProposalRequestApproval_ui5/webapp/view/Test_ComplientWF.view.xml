@@ -1,0 +1,147 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.bmi.scp.apps.complaintforms.controller.ApproverScreen" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:m="sap.m" height="100%" xmlns:u="sap.uxap">
+	<u:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true">
+		<u:headerTitle>
+			<u:ObjectPageDynamicHeaderTitle>
+				<u:expandedHeading>
+					<m:HBox>
+						<m:Title text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/ObjectID}" wrapping="true"
+							class="sapUiTinyMarginEnd sapUiTinyMarginBottom"/>
+						<m:Title text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Name}" wrapping="true"
+							class="sapUiTinyMarginEnd sapUiTinyMarginBottom"/>
+					</m:HBox>
+				</u:expandedHeading>
+			</u:ObjectPageDynamicHeaderTitle>
+		</u:headerTitle>
+		<u:headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true">
+				<m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Account}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message2/ServiceRequestPartyCollection/ServiceRequestParty/ObjectID}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Complaint_Category}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/ServiceCategoryID}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Complaint_Reason}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/ZComplaintReason_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Total_Cost}:" class="sapUiTinyMarginEnd" />
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_CostAllocationcontent_KUT}" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_CostAllocationcurrencyCode_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Cost_Allocation}:" class="sapUiTinyMarginEnd"/>
+						<m:Input id="IdInpCostAllocation" value="{path:'/Messages/Message1/ServiceRequestCollection/ServiceRequest/ZCostAllocation_KUT'}"
+							editable="false"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Immediate_Settlement}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_ImmediateSettlement_Header_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Cost_Split}:" class="sapUiTinyMarginEnd"/>
+						<m:Input id="IdInpCostSplit" value="{path:'/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_CostSplit_New_KUT'}"
+							editable="false"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Customer_Country}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message2/ServiceRequestPartyCollection/ServiceRequestParty/CountryCode}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Settlement_reference}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_Settlementwithreference_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Invoice_Ref_ID}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/RefInvoiceID_KUT}"/>
+					</m:HBox>
+				</m:VBox>
+				<m:VBox class="sapUiSmallMarginBottom">
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Delivery_Ref_ID}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_RefDeliveryID_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Other_Ref_Reason}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/Z_OtherReferenceReason_KUT}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Complaints_status}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/ServiceRequestUserLifeCycleStatusCode}"/>
+					</m:HBox>
+					<m:HBox class="sapUiTinyMarginBottom">
+						<m:Label text="{i18n>Line_item}:" class="sapUiTinyMarginEnd"/>
+						<m:Text text="{/Messages/Message1/ServiceRequestCollection/ServiceRequest/ServiceRequestItem/ServiceRequestItem/ID}"/>
+					</m:HBox>
+				</m:VBox>
+			</m:FlexBox>
+		</u:headerContent>
+		<u:sections>
+			<u:ObjectPageSection titleUppercase="false" title="Items">
+				<u:subSections>
+					<u:ObjectPageSubSection titleUppercase="false">
+						<u:blocks>
+							<m:VBox>
+								<m:Table id="idProductsTable" inset="false" items="{path:'/Messages/Message1/ServiceRequestCollection/ServiceRequest/ServiceRequestItem'}">
+									<columns>
+										<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Product"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Product Description"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+											<Text text="Settlement Method"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="12em">
+											<Text text="Quantity"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Settlement Amount"/>
+										</Column>
+										<Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Principal Plant"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{ProductID}"/>
+												<Text text="{Description}"/>
+												<Text text="{UserServiceTransactionProcessingTypeCode}"/>
+												<HBox alignItems="Center" justifyContent="SpaceAround">
+												<Text text="{RequestedQuantity}"/>
+												<Text text="{QuantityMeasureUnitCode}"/>
+												</HBox>
+												<Text text="{Z_SettlementAmountcontent_KUT}"/>
+												<Text text="{ZPlantCode_SDK}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</m:Table>
+								<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+									maxContainerCols="2" layout="ResponsiveGridLayout" id="form0" labelSpanXL="4" labelSpanL="4" labelSpanM="6" labelSpanS="12"
+									adjustLabelSpan="true" emptySpanXL="0" emptySpanL="1" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+									singleContainerFullSize="false">
+									<sap.ui.layout.form:content>
+										<Label text="{i18n>Comments}" visible="false" id="IdLblPrevComments"/>
+										<Text text="{/Comments}" visible="false" id="IdTxtPrevComments"/>
+										<Label text="{i18n>Complaint_App_Reason}" id="lb1" required="true"/>
+										<Input xmlns="sap.m" id="IdInpComments" value="{oLocalJsonModel>/ComplaintApprovalReason}"/>
+									</sap.ui.layout.form:content>
+								</sap.ui.layout.form:SimpleForm>
+							</m:VBox>
+						</u:blocks>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+		</u:sections>
+	</u:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,175 @@
+<mvc:View controllerName="com.bmigroup.sd.pricing.change.controller.PriceChange" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:sv="sap.ui.comp.smartvariants" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:fb="sap.ui.comp.filterbar">
+	<Page id="idPagePriceChangeRequestApproval" showFooter="true" showHeader="false">
+		<content>
+			<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" >
+				<items>
+					<!--  PRICE CHANGE REQUEST XML VIEW CONTENT -->
+					<IconTabFilter text="{i18n>tabTitlePriceChangeRequest}" key="keyPriceChangeRequestTab">
+						<!--  SELECTION FIELDS - PRICE CHANGE REQUEST TAB -->
+						<VBox>
+						
+							<smartFilterBar:SmartFilterBar id="idSmartFilterBar" class="sapUiNoContentPadding" persistencyKey="PriceChangeRequestSmartFilterBar"
+								useToolbar="false" entitySet="PricingHeaderSet" smartVariant="PriceChangeRequestSmartVariant" search="onSearchSmartFilterBar"
+								showFilterConfiguration="false" considerSelectionVariants="true">
+								<smartFilterBar:controlConfiguration>
+									<smartFilterBar:ControlConfiguration mandatory="mandatory" key="SalesOrg" visibleInAdvancedArea="true"
+										preventInitialDataFetchInValueHelpDialog="false" index="0" filterType="single" displayBehaviour="idAndDescription"/>
+									<smartFilterBar:ControlConfiguration mandatory="mandatory" key="DistributionChannel" visibleInAdvancedArea="true"
+										preventInitialDataFetchInValueHelpDialog="false" index="1" filterType="single" displayBehaviour="idAndDescription"/>
+									<smartFilterBar:ControlConfiguration mandatory="mandatory" key="SoldToParty" visibleInAdvancedArea="true"
+										preventInitialDataFetchInValueHelpDialog="false" index="2" filterType="single" displayBehaviour="idAndDescription"/>
+									<smartFilterBar:ControlConfiguration mandatory="mandatory" key="Material" visibleInAdvancedArea="true"
+										preventInitialDataFetchInValueHelpDialog="false" index="3" filterType="single" displayBehaviour="idAndDescription"/>
+								</smartFilterBar:controlConfiguration>
+							</smartFilterBar:SmartFilterBar>
+						</VBox>
+						<!--  MATERIAL INFO - PRICE CHANGE REQUEST TAB -->
+						<VBox id="idsimpleform1" visible="false">
+							<f:SimpleForm editable="true" title="" layout="ResponsiveGridLayout" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+								emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false" labelSpanL="5" labelSpanM="8" labelSpanS="6">
+								<f:content>
+									<core:Title/>
+									<Label text="{/#PricingHeader/Currency/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/Currency}" editable="false"/>
+									<Label text="{/#PricingHeader/PriceRefMaterial/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/PriceRefMaterial}" editable="false"/>
+									<core:Title/>
+									<Label text="{/#PricingHeader/Brand/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/Brand}" editable="false"/>
+									<Label text="{/#PricingHeader/PalletQty/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/PalletQty}" editable="false"/>									
+									<Label text="{/#PricingHeader/Stock/@sap:label}" design="Bold"/>
+									<Link text="{i18n>formLabekLinkStockText}" press="handlePressStockReport"/>
+									<core:Title/>
+									<Label text="{/#PricingHeader/LastPrice/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/LastPrice}" editable="false" description="{oModelPriceChangeRequestData>/LastPriceUnit}"
+									fieldWidth="70%">
+										<layoutData>
+											<l:GridData span="XL4 L5 M5 S5"/>
+										</layoutData>
+									</Input>
+									<Button id="target" type="Transparent" icon="sap-icon://hint" width="1%"/>
+									<Label text="{/#PricingHeader/SqMeterPrice/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/SqMeterPrice}" editable="false">
+										<layoutData>
+											
+											<l:GridData span="XL4 L5 M5 S5"/>
+										</layoutData>
+									</Input>
+									<Label text="{/#PricingHeader/MinPrice/@sap:label}" design="Bold"/>
+									<Input value="{oModelPriceChangeRequestData>/MinPrice}" editable="false">
+										<layoutData>
+											
+											<l:GridData span="XL4 L5 M5 S5"/>
+										</layoutData>
+									</Input>
+								</f:content>
+							</f:SimpleForm>
+						</VBox>
+						<l:VerticalLayout width="100%" id="idCustomerHierarchyFB" visible="false">
+				
+							<fb:FilterBar showFilterConfiguration="false" showGoOnFB="false" useToolbar="false">
+								<fb:filterGroupItems>
+									<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" visibleInFilterBar="true" label="{/#PricingHeader/CustomerHierarchyCheckBox/@sap:label}">
+										<fb:control>
+											<CheckBox id="idCustomerHierarchyCheckbox" select="onCHCheckboxSelect"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="{/#PricingHeader/CustomerHierarchy/@sap:label}" visibleInFilterBar="true">
+										<fb:control>
+											<Input id="idCustomerHierarchyInput" showValueHelp="true" valueHelpOnly="true"
+												valueHelpRequest="onCustHierarchyValueHelpRequest"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INTERNAL$" name="C" label="{/#PricingHeader/ValidFrom/@sap:label}" visibleInFilterBar="true">
+										<fb:control>
+											<DatePicker value="{oModelPriceChangeRequestData>/ValidFrom}" valueFormat="yyyyMMdd" displayFormat="{oModelPriceChangeRequestData>/DateFormat}"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INTERNAL$" name="D" label="{/#PricingHeader/ValidTo/@sap:label}" visibleInFilterBar="true">
+										<fb:control>
+											<DatePicker value="{oModelPriceChangeRequestData>/ValidTo}" valueFormat="yyyyMMdd" displayFormat="{oModelPriceChangeRequestData>/DateFormat}"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INTERNAL$" name="E" label="{/#PricingHeader/UnitOfMeasure/@sap:label}" visibleInFilterBar="true">
+										<fb:control>
+											<Input value="{oModelPriceChangeRequestData>/UnitOfMeasure}" editable="false"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+								</fb:filterGroupItems>
+							</fb:FilterBar>
+						</l:VerticalLayout>
+						
+						<VBox id="idsmartTablevbox" visible="false">
+						
+							<Table items="{oModelPriceChangeRequestData>/PricingHeaderToPricingItem/results}"
+								mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" backgroundDesign="Solid">
+								<columns>
+									<Column width="120px" hAlign="Begin">
+										<Label text="{/#PricingItem/Description/@sap:label}" design="Bold"/>
+									</Column>
+									<Column width="250px" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+										<Label text="{/#PricingItem/BaseLinePrice/@sap:label}" design="Bold"/>
+									</Column>
+									<Column width="250px" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+										<Label text="{/#PricingItem/CurrentPrice/@sap:label}" design="Bold"/>
+									</Column>
+									<Column width="320px" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+										<Label text="{/#PricingItem/NewPrice/@sap:label}" design="Bold"/>
+									</Column>
+									<Column width="70px" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+										<Text text="{/#PricingItem/DiscountOnBaseLine/@sap:label}"/>
+									</Column>
+									
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<HBox>
+												<Label text="{oModelPriceChangeRequestData>Description}" design="Bold"/>
+											</HBox>
+											<HBox>
+												<Input value="{oModelPriceChangeRequestData>BaseLinePrice}" width="250px" fieldWidth="60%" editable="false"
+													description="{oModelPriceChangeRequestData>BaseLineUnit}/{oModelPriceChangeRequestData>BaseLinePricingUnit}{oModelPriceChangeRequestData>BaseLineConditionUnit}"/>
+											</HBox>
+											<HBox>
+												<Input value="{oModelPriceChangeRequestData>CurrentPrice}" width="250px" fieldWidth="60%" editable="false"
+													description="{oModelPriceChangeRequestData>CurrentUnit}/{oModelPriceChangeRequestData>BaseLinePricingUnit}{oModelPriceChangeRequestData>BaseLineConditionUnit}"/>
+											</HBox>
+											<HBox>
+												<Input value="{oModelPriceChangeRequestData>NewPrice}" width="200px" fieldWidth="80%" description="{oModelPriceChangeRequestData>NewUnit}"
+												change="onNewPriceChange"/>
+												<Text width="10px"/>
+												<Input value="{oModelPriceChangeRequestData>NewPricingUnit}" width="110px"
+													editable="{= ${oModelPriceChangeRequestData>NewPricingUnitEditable} === 'true' ? true : false }" 
+													description="{oModelPriceChangeRequestData>NewConditionUnit}" fieldWidth="60%"/>												
+											</HBox>
+											<HBox>
+												<Input value="{oModelPriceChangeRequestData>DiscountOnBaseLine}" width="70px" editable="false"/>
+											</HBox>
+											
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							
+						</VBox>
+					</IconTabFilter>
+					
+					
+					
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar id="idOverflowToolBar" visible="false">
+				<ToolbarSpacer/>
+				<Button text="{i18n>buttonTextApprove}" type="Accept" press="onPressApprovePriceChangeRequest"/>				
+				<Button text="{i18n>buttonTextReject}" type="Reject"  press="onPressRejectPriceChangeRequest"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
