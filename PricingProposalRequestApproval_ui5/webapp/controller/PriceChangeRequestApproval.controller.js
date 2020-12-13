@@ -32,11 +32,10 @@ sap.ui.define([
 			this._oModelPriceChangeRequestData = this.getOwnerComponent().getModel("oModelPriceChangeRequestData");
 			this._oModelPriceChangeReqAdminData = this.getOwnerComponent().getModel("PRICECHANGEREQUESTADMINDATA");
 			this.oRouter.getRoute(Constants.ROUTES.PRICE_CHANGE_REQUEST_APPROVAL_VIEW).attachPatternMatched(this._fnOnRouteMatched, this);
-			this._oPopover =
-				sap.ui.xmlfragment("com.bmigroup.otc.pricingchg.request.approval.view.LastPriceInfo", this);
+			
 
-			this.getView().addDependent(this._oPopover);
-			this.attachPopoverOnMouseover(this.byId("target"), this._oPopover);
+			
+			
 		},
 		
 		
