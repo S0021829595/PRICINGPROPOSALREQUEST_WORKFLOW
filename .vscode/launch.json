@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run PricingProposalRequestApproval_ui5",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/pricingproposalrequest-workflow-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/combmigroupotcpricingchgrequestapproval/index.html",
+        "--ui5",
+        "{\"version\":\"1.71.28\"}"
+      ],
+      "cwd": "${workspaceFolder}/PricingProposalRequestApproval_ui5",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/PRICINGPROPOSALREQUEST_WORKFLOW/PricingProposalRequestApproval_ui5\"}"
+      },
+      "envFile": "${workspaceFolder}/PricingProposalRequestApproval_ui5/.env1",
+      "preLaunchTask": "Build PRICINGPROPOSALREQUEST_WORKFLOW"
+    }
+  ]
+}

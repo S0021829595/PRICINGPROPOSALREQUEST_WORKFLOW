@@ -81,7 +81,7 @@
                 	{
 					"name": "PriceChangeRequestApproval",
 					"pattern": "",
-					"titleTarget": "Price Change Request Approval",
+					"titleTarget": "PriceChangeRequestApproval",
 					"greedy": false,
 					"target": [
 						"PriceChangeRequestApproval"

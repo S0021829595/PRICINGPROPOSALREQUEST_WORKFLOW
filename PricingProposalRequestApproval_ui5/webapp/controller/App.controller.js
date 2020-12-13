@@ -9,8 +9,6 @@ sap.ui.define([
 		"use strict";
 
 		return BaseController.extend("com.bmigroup.otc.pricingchg.request.approval.controller.App", {
-			onInit: function () {
-
-			}
+			
 		});
 	});

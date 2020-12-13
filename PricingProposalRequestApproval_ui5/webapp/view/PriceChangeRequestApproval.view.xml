@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.bmigroup.sd.pricing.change.controller.PriceChange" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+<mvc:View controllerName="com.bmigroup.otc.pricingchg.request.approval.controller.PriceChangeRequestApproval" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	displayBlock="true" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
 	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:sv="sap.ui.comp.smartvariants" xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" xmlns:fb="sap.ui.comp.filterbar">
