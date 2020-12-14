@@ -15,8 +15,6 @@ sap.ui.define([
 	"com/bmigroup/otc/pricingchg/request/approval/js/Constants",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/Fragment"
-
-
 ], function (JSONModel, BaseController, MessageToast, Filter, FilterOperator, MessageBox, Constants, Controller, Fragment) {
 	"use strict";
 
