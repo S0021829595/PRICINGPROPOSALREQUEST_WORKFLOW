@@ -29,7 +29,6 @@ sap.ui.define([
 		onInit: function () {
 			this.oRouter = this.getRouter();			
 			this.oRouter.getRoute("PriceChangeRequestApproval").attachPatternMatched(this._fnOnRouteMatched, this);		
-			
 		},
 		
 		_fnOnRouteMatched : function(oEvent){
